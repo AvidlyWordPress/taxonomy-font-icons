@@ -3,7 +3,7 @@
  * Functions for displaying taxonomy terms with their icons.
  */
 
-if ( ! function_exists( 'tax_the_taxonomies' ) ) {
+if ( ! function_exists( 'tfi_the_taxonomies' ) ) {
 	/**
 	 * Current post taxonomies.
 	 *
@@ -13,17 +13,17 @@ if ( ! function_exists( 'tax_the_taxonomies' ) ) {
 	 *
 	 * @since 1.0
 	 */
-	function tax_the_taxonomies( $term, $post_id = null, $prefix = null ) {
+	function tfi_the_taxonomies( $term, $post_id = null, $prefix = null ) {
 		if ( ! is_numeric( $post_id ) ) {
 			$post_id = get_the_id();
 		}
 
 		$terms = get_the_terms( $post_id, $term );
-		echo tax_create_list( $terms, $prefix );
+		echo tfi_create_list( $terms, $prefix );
 	}
 }
 
-if ( ! function_exists( 'tax_all_taxonomies' ) ) {
+if ( ! function_exists( 'tfi_all_taxonomies' ) ) {
 	/**
 	 * All taxonomies.
 	 *
@@ -34,13 +34,13 @@ if ( ! function_exists( 'tax_all_taxonomies' ) ) {
 	 *
 	 * @since 1.0
 	 */
-	function tax_all_taxonomies( $taxonomies, $args = null, $prefix = null ) {
+	function tfi_all_taxonomies( $taxonomies, $args = null, $prefix = null ) {
 		$terms = get_terms( $taxonomies, $args );
-		echo tax_create_list( $terms, $prefix );
+		echo tfi_create_list( $terms, $prefix );
 	}
 }
 
-if ( ! function_exists( 'tax_create_list' ) ) {
+if ( ! function_exists( 'tfi_create_list' ) ) {
 	/**
 	 * Create a list of the taxonomies.
 	 *
@@ -49,10 +49,10 @@ if ( ! function_exists( 'tax_create_list' ) ) {
 	 *
 	 * @since 1.0
 	 */
-	function tax_create_list( $terms, $prefix ) {
+	function tfi_create_list( $terms, $prefix ) {
 
 		// Make sure we have something we can use
-		if ( false != $terms || ! is_wp_error( $terms ) ) {
+		if ( $terms && ! is_wp_error( $terms ) ) {
 
 			// Default to 'term' if $prefix is not defined
 			if ( empty( $prefix ) ) {
@@ -60,7 +60,7 @@ if ( ! function_exists( 'tax_create_list' ) ) {
 			}
 
 			// Get the icons
-			$icons = get_option( '_taxonomy_icons' );
+			$icons = get_option( '_taxonomy_font_icons' );
 
 			if ( empty( $icons ) ) {
 				// This prevent's PHP warnings in case no icons have been added.

@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Taxonomy Icons
- * Plugin URI: https://github.com/H1FI/taxonomy-icons
+ * Plugin Name: Taxonomy Font Icons
+ * Plugin URI: https://github.com/H1FI/taxonomy-font-icons
  * Description: Connect Font Awesome icons to taxonomies (categories, tags and custom taxonomies).
  * Version: 1.0
  * Author: Tomi Mäenpää / H1
@@ -35,13 +35,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Require the main class and functions.
  */
-require_once( 'includes/taxonomy-icons-class.php' );
-require_once( 'includes/taxonomy-icons-functions.php' );
+require_once( 'includes/taxonomy-font-icons-class.php' );
+require_once( 'includes/taxonomy-font-icons-functions.php' );
 
 /**
  * Activation and uninstall hooks.
  */
-register_activation_hook( __FILE__, array( 'Taxonomy_Icons', 'plugin_activation' ) );
-register_uninstall_hook( __FILE__, array( 'Taxonomy_Icons', 'plugin_uninstall' ) );
+register_activation_hook( __FILE__, array( 'Taxonomy_Font_Icons', 'plugin_activation' ) );
+register_uninstall_hook( __FILE__, array( 'Taxonomy_Font_Icons', 'plugin_uninstall' ) );
 
-$taxonomy_icons = new Taxonomy_Icons();
+$taxonomy_font_icons = new Taxonomy_Font_Icons();

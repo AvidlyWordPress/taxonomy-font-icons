@@ -4,10 +4,10 @@
  *
  * @since 1.0
  */
-class Taxonomy_Icons {
+class Taxonomy_Font_Icons {
 
 	// Public variables
-	public $taxonomy_icons_option;
+	public $taxonomy_font_icons_option;
 	public $taxonomies;
 	public $font;
 	public $stylesheet;
@@ -16,7 +16,7 @@ class Taxonomy_Icons {
 	function __construct() {
 
 		// Set the wp_options option name
-		$this->taxonomy_icons_option = '_taxonomy_icons';
+		$this->taxonomy_font_icons_option = '_taxonomy_font_icons';
 
 		// Plugin init
 		add_action( 'init', array( $this, 'plugin_init' ) );
@@ -25,29 +25,29 @@ class Taxonomy_Icons {
 	/**
 	 * Plugin activation.
 	 *
-	 * Creates the '_taxonomy_icons' wp_option if it doesn't exist.
+	 * Creates the '_taxonomy_font_icons' wp_option if it doesn't exist.
 	 *
 	 * @since 1.0
 	 */
 	public function plugin_activation() {
 
-		$tax_icons = get_option( '_taxonomy_icons' );
+		$tfi_icons = get_option( '_taxonomy_font_icons' );
 
-		if ( empty( $tax_icons ) ) {
-			update_option( '_taxonomy_icons' );
+		if ( empty( $tfi_icons ) ) {
+			update_option( '_taxonomy_font_icons', '' );
 		}
 	}
 
 	/**
 	 * Plugin unistall.
 	 *
-	 * Remove the '_taxonomy_icons' option from wp_options.
+	 * Remove the '_taxonomy_font_icons' option from wp_options.
 	 *
 	 * @since 1.0
 	 */
 	public function plugin_uninstall() {
 
-		delete_option( '_taxonomy_icons' );
+		delete_option( '_taxonomy_font_icons' );
 	}
 
 	/**
@@ -693,7 +693,7 @@ class Taxonomy_Icons {
 				),
 			);
 
-		$args = apply_filters( 'tax_filters_default_args', $args );
+		$args = apply_filters( 'tfi_filters_default_args', $args );
 
 		return $args;
 	}
@@ -736,13 +736,11 @@ class Taxonomy_Icons {
 		$term_id = $term->term_id;
 
 		// Get the icons
-		$term_meta = get_option( $this->taxonomy_icons_option );
+		$term_meta = get_option( $this->taxonomy_font_icons_option );
 
 		if ( ! empty( $term_meta ) ) {
 			// Get the icon of the taxonomy
-			$term_icon = $term_meta[$term_id];
-		} else {
-			$term_icon = '';
+			$term_icon = ( isset( $term_meta[ $term_id] ) ) ? $term_meta[$term_id] : '';
 		}
 
 		?>
@@ -784,13 +782,13 @@ class Taxonomy_Icons {
 			$selected_icon = esc_attr( $_POST['icon'] );
 
 			// Get the icons
-			$tax_icons = get_option( $this->taxonomy_icons_option );
+			$tfi_icons = get_option( $this->taxonomy_font_icons_option );
 
 			// Update the icons array with the key value pair
-			$tax_icons[ $term_id ] = $selected_icon;
+			$tfi_icons[ $term_id ] = $selected_icon;
 
 			// Update the option
-			update_option( $this->taxonomy_icons_option, $tax_icons );
+			update_option( $this->taxonomy_font_icons_option, $tfi_icons );
 		}
 	}
 
@@ -802,6 +800,6 @@ class Taxonomy_Icons {
 	 * @since 1.0
 	 */
 	public function enqueue_stylesheets() {
-		wp_enqueue_style( 'taxonomy-icons-stylesheet', $this->stylesheet );
+		wp_enqueue_style( 'taxonomy-font-icons-stylesheet', $this->stylesheet );
 	}
 }
