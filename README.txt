@@ -36,7 +36,6 @@ function my_custom_icons() {
 
 	return $args;
 }
-}
 ```
 
 == Installation ==
