@@ -40,7 +40,7 @@ function my_custom_icons() {
 
 == Installation ==
 1. Upload `taxonomy-font-icons` to the `/wp-content/plugins/` directory
-2. Activate the plugin through the \'Plugins\' menu in WordPress
+2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Connect icons to taxonomies on their corresponding menus
 4. Use the following functions in your templates to show term lists with icons:
 * Single post: `tfi_the_taxonomies( 'post_tag' );`
